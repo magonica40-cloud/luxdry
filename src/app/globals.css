@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@theme {
+
+  --color-brand-navy: #0f172a;
+  --color-brand-blue: #1e3a8a;
+  --color-brand-cyan: #06b6d4;
+  --color-brand-aqua: #2dd4bf;
+  --color-brand-purple: #c084fc;
+  --color-brand-orange: #fb923c;
+  --color-brand-yellow: #facc15;
+  
+  --shadow-soft: 0 20px 40px -10px rgba(0,0,0,0.05);
+  --shadow-glow: 0 4px 14px 0 rgba(6, 182, 212, 0.39);
+}
+
+
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand-cyan text-white font-bold rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow hover:bg-cyan-400;
+  }
+  
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-transparent border-2 border-slate-200 text-slate-800 font-bold rounded-full transition-all duration-300 hover:border-brand-cyan hover:text-brand-cyan hover:-translate-y-0.5;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-soft rounded-2xl;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
