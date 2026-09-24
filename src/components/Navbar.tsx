@@ -14,11 +14,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Home', href: '#' },
+    { name: 'About Us', href: '#about-us' },
     { name: 'Services', href: '#services' },
-    { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Why LuxeDry', href: '#why-luxedry' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'Areas We Serve', href: '#service-area' },
+    { name: 'FAQs', href: '#faqs' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -26,7 +24,7 @@ export default function Navbar() {
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 z-50">
-          <img src="/logo.jpeg" alt="LuxeDry" className={`transition-all duration-300 ${scrolled ? 'h-10' : 'h-12'}`} />
+          <img src="/new_logo.jpg" alt="LuxeDry" className={`transition-all duration-300 ${scrolled ? 'h-10' : 'h-12'}`} />
         </a>
 
         {/* Desktop Nav */}
@@ -39,7 +37,7 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden lg:block">
-          <a href="#book" className="btn-primary py-2.5 px-6 text-sm">Book a Pickup</a>
+          <a href="#book" className="btn-primary py-2.5 px-6 text-sm">Get a Custom Quote</a>
         </div>
 
         {/* Mobile Toggle */}
@@ -54,7 +52,7 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <a href="#book" onClick={() => setIsOpen(false)} className="btn-primary mt-4">Book a Pickup</a>
+          <a href="#book" onClick={() => setIsOpen(false)} className="btn-primary mt-4">Get a Custom Quote</a>
         </div>
       </div>
     </header>

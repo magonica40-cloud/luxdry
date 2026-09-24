@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 pt-20 pb-10 border-t border-slate-800">
+    <footer className="bg-slate-950 pt-20 pb-10 border-t border-slate-800" id="contact">
       <div className="container mx-auto px-4">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Brand Col */}
           <div>
             <a href="/" className="inline-block mb-6">
-              <img src="/logo.jpeg" alt="LuxeDry Logo" className="h-12 w-auto brightness-0 invert" />
+              <img src="/new_logo.jpg" alt="LuxeDry Logo" className="h-12 w-auto rounded-lg" />
             </a>
             <p className="text-slate-400 font-medium text-sm leading-relaxed mb-6">
               Professional laundry, steam ironing and dry cleaning with convenient doorstep service. We care for every fabric.
@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6 tracking-wide">Services</h4>
             <ul className="space-y-3">
-              {['Wash & Fold', 'Wash & Iron', 'Steam Iron', 'Dry Cleaning', 'Shoe Cleaning', 'Saree Care', 'Home Fabric Care'].map((item) => (
+              {['Hotel & Hospitality', 'Hospital & Healthcare', 'Restaurant & Food', 'Corporate & Office', 'Gym & Fitness', 'Hostel & PG', 'Uniform & Workwear'].map((item) => (
                 <li key={item}>
                   <a href="#" className="text-slate-400 hover:text-brand-cyan font-medium text-sm transition-colors">{item}</a>
                 </li>
@@ -45,7 +45,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6 tracking-wide">Company</h4>
             <ul className="space-y-3">
-              {['About Us', 'Pricing', 'Areas We Serve', 'Contact', 'FAQs', 'Privacy Policy', 'Terms & Conditions'].map((item) => (
+              {['About Us', 'Contact', 'FAQs', 'Privacy Policy', 'Terms & Conditions'].map((item) => (
                 <li key={item}>
                   <a href="#" className="text-slate-400 hover:text-brand-cyan font-medium text-sm transition-colors">{item}</a>
                 </li>

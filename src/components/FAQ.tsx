@@ -1,23 +1,21 @@
 'use client';
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import ScrollReveal from '@/components/ScrollReveal';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
-    { q: 'How does LuxeDry pickup and delivery work?', a: 'Simply book online or via WhatsApp. Our team will pick up your clothes from your doorstep at the scheduled time, clean them according to your instructions, and deliver them back fresh within 48 hours.' },
-    { q: 'How long does laundry take?', a: 'Our standard turnaround time is 48 hours. We also offer 24-hour express service for an additional fee.' },
-    { q: 'Do you offer dry cleaning?', a: 'Yes! We offer premium dry cleaning for suits, dresses, silk, wool, and other delicate fabrics.' },
-    { q: 'Do you clean shoes?', a: 'Absolutely. Our specialized shoe laundry service can refresh and deep clean sneakers, leather shoes, and more.' },
-    { q: 'Do you clean sarees?', a: 'Yes, we provide expert saree care, including delicate dry cleaning, steam pressing, and saree rolling to ensure the fabric remains crisp.' },
-    { q: 'Is doorstep pickup available?', a: 'Yes, we provide 100% free doorstep pickup and delivery across all our serviceable areas.' },
-    { q: 'How can I track my order?', a: 'Once your order is picked up, you will receive an SMS/WhatsApp with a tracking link so you can check the live status of your garments.' },
-    { q: 'What happens if a garment has special care instructions?', a: 'Our team thoroughly inspects each garment before cleaning. If a care label specifies special instructions (like "Dry Clean Only"), we strictly adhere to it.' },
+    { q: 'How do I book a laundry pickup?', a: 'Simply book online or contact our team with your pickup details. We\'ll arrange a convenient time to collect your clothes.' },
+    { q: 'Do you offer doorstep pickup and delivery?', a: 'Yes. We provide convenient pickup and delivery within our service areas.' },
+    { q: 'Do you handle delicate clothes?', a: 'Yes. Delicate garments are handled according to their fabric and care requirements.' },
+    { q: 'How long does laundry service take?', a: 'Turnaround time depends on the service and garment type. Our team will provide the expected delivery time when you place your order.' },
+    { q: 'Can I request ironing along with washing?', a: 'Yes. You can choose washing, ironing, or a combination of services based on your needs.' }
   ];
 
   return (
-    <section className="py-24 bg-surface-light" id="faq">
+    <section className="py-24 bg-surface-light" id="faqs">
       <div className="container mx-auto px-4 max-w-4xl">
         
         <div className="text-center mb-16">
