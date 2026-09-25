@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 export default function ScrollReveal({ 
   children, 
   className = '', 
-  stagger = false 
+  stagger = false,
+  delay = 0
 }: { 
   children: React.ReactNode; 
   className?: string;
   stagger?: boolean;
+  delay?: number;
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -42,6 +44,7 @@ export default function ScrollReveal({
     <div 
       ref={ref} 
       className={`${baseClass} ${isVisible ? 'is-visible' : ''} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </div>
