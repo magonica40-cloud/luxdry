@@ -11,19 +11,19 @@ export default function Footer() {
           {/* Brand Col */}
           <div>
             <a href="/" className="inline-block mb-6">
-              <img src="/new_logo.jpg" alt="LuxeDry Logo" className="h-12 w-auto rounded-lg" />
+              <img src="/new_logo_light.png" alt="LuxeDry Logo" className="h-12 w-auto" />
             </a>
             <p className="text-slate-400 font-medium text-sm leading-relaxed mb-6">
               Professional laundry, steam ironing and dry cleaning with convenient doorstep service. We care for every fabric.
             </p>
               <div className="flex gap-4">
-                <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-cyan hover:text-brand-navy transition-all">
+                <a href="#" aria-label="Facebook" className="text-slate-400 w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-cyan hover:text-brand-navy transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                 </a>
-                <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-cyan hover:text-brand-navy transition-all">
+                <a href="#" aria-label="Instagram" className="text-slate-400 w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-cyan hover:text-brand-navy transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 </a>
-                <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-cyan hover:text-brand-navy transition-all">
+                <a href="#" aria-label="Twitter" className="text-slate-400 w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-cyan hover:text-brand-navy transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
                 </a>
               </div>
@@ -60,19 +60,20 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone size={18} className="text-brand-cyan shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-white font-medium text-sm">+91 800-LUXEDRY</p>
+                  <p className="text-white font-medium text-sm">+91 9180247261</p>
                   <p className="text-slate-500 text-xs mt-0.5">Mon-Sun, 8am - 8pm</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={18} className="text-brand-cyan shrink-0 mt-0.5" />
-                <p className="text-white font-medium text-sm">hello@luxedry.com</p>
+                <p className="text-white font-medium text-sm">snenterprises3366@gmail.com</p>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-brand-cyan shrink-0 mt-0.5" />
                 <p className="text-slate-400 font-medium text-sm leading-relaxed">
-                  123 Laundry Lane, <br />
-                  Mumbai, Maharashtra 400001
+                  40/3, Devalapura Village, <br />
+                  Anugondanahalli Hobli, Hoskote Taluk, <br />
+                  Bengaluru Rural - 560067
                 </p>
               </li>
             </ul>

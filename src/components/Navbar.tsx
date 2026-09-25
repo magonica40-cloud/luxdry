@@ -21,10 +21,10 @@ export default function Navbar() {
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200 py-3' : 'bg-transparent py-5'}`}>
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 z-50">
-          <img src="/new_logo.jpg" alt="LuxeDry" className={`transition-all duration-300 ${scrolled ? 'h-10' : 'h-12'}`} />
+          <img src="/new_logo.png" alt="LuxeDry" className={`transition-all duration-300 ${scrolled ? 'h-10' : 'h-12'}`} />
         </a>
 
         {/* Desktop Nav */}
@@ -36,7 +36,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center gap-4">
           <a href="#book" className="btn-primary py-2.5 px-6 text-sm">Get a Custom Quote</a>
         </div>
 

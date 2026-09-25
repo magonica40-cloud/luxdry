@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "LuxeDry | Premium Laundry, Steam Iron & Dry Cleaning",
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} text-slate-800 bg-slate-50 antialiased`}>
+      <body className={`${jakarta.className} text-slate-800 bg-slate-50 antialiased`}>
         {children}
       </body>
     </html>
