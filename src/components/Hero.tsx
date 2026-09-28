@@ -1,9 +1,10 @@
 'use client';
-import { ShieldCheck, Truck, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, ShieldCheck, Truck, Sparkles } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-surface-light bg-grid-pattern">
+    <section className="relative pt-48 pb-20 lg:pt-56 lg:pb-32 overflow-hidden bg-surface-light">
       {/* Decorative Gradients */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-cyan/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-purple/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
@@ -63,6 +64,16 @@ export default function Hero() {
           </div>
           
         </div>
+      </div>
+
+      {/* Brand CTAs */}
+      <div className="relative z-10 mt-16 lg:mt-20 flex flex-col sm:flex-row items-center justify-center gap-4 text-center px-4 animate-[fadeUp_1s_0.5s_ease_both]">
+        <Link href="/about" className="btn-primary">
+          About LuxeDry <ArrowRight size={18} />
+        </Link>
+        <Link href="/contact" className="btn-outline">
+          Talk to Us
+        </Link>
       </div>
     </section>
   );

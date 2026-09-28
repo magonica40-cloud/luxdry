@@ -13,8 +13,8 @@ export default function ServiceArea() {
     setStatus('checking');
     // Simulate API call
     setTimeout(() => {
-      // Mock validation: just assume pincodes starting with 5 or 1 are available
-      if (pincode.startsWith('5') || pincode.startsWith('1') || pincode === '400001') {
+      // Mock validation: Karnataka service area covers the 56xxxx range
+      if (pincode.startsWith('56')) {
         setStatus('available');
       } else {
         setStatus('unavailable');
@@ -30,8 +30,7 @@ export default function ServiceArea() {
           
           {/* Map/Visual Side */}
           <div className="relative aspect-square md:aspect-auto md:h-[400px] rounded-3xl overflow-hidden bg-slate-100 border border-slate-200">
-            {/* Simple abstract map visual */}
-            <div className="absolute inset-0 bg-[#e2e8f0] opacity-50" style={{ backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+            <div className="absolute inset-0 bg-[#e2e8f0] opacity-50"></div>
             
             {/* Location pins */}
             <div className="absolute top-1/4 left-1/4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center animate-[float_4s_ease-in-out_infinite]">
@@ -67,7 +66,7 @@ export default function ServiceArea() {
                   aria-label="Enter Pincode"
                   value={pincode}
                   onChange={(e) => { setPincode(e.target.value); setStatus('idle'); }}
-                  placeholder="Enter Pincode (e.g. 400001)" 
+                  placeholder="Enter Pincode (e.g. 560067)" 
                   className="w-full pl-12 pr-4 py-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-white font-medium shadow-sm"
                   maxLength={6}
                 />
@@ -95,7 +94,7 @@ export default function ServiceArea() {
             <div className="mt-8 pt-8 border-t border-slate-200">
               <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Popular Areas</p>
               <div className="flex flex-wrap gap-2">
-                {['South Delhi', 'Gurugram', 'Noida', 'Indiranagar', 'Bandra'].map(area => (
+                {['Whitefield', 'Indiranagar', 'Koramangala', 'Jayanagar', 'Yelahanka', 'Hoskote'].map(area => (
                   <span key={area} className="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600">
                     {area}
                   </span>

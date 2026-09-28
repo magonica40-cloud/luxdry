@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { site } from '@/data/site';
 
 export default function BookingForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -28,11 +29,21 @@ export default function BookingForm() {
               <div className="space-y-6 relative z-10 mt-auto">
                 <div>
                   <p className="text-brand-cyan text-sm font-bold uppercase tracking-wider mb-1">Call Us</p>
-                  <p className="font-semibold">+91 800-LUXEDRY</p>
+                  <a href={`tel:${site.phoneHref}`} className="font-semibold hover:text-brand-cyan transition-colors">
+                    {site.phone}
+                  </a>
+                </div>
+                <div>
+                  <p className="text-brand-cyan text-sm font-bold uppercase tracking-wider mb-1">Email</p>
+                  <a href={`mailto:${site.email}`} className="font-semibold hover:text-brand-cyan transition-colors break-all">
+                    {site.email}
+                  </a>
                 </div>
                 <div>
                   <p className="text-brand-cyan text-sm font-bold uppercase tracking-wider mb-1">WhatsApp</p>
-                  <p className="font-semibold">+91 98765 43210</p>
+                  <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-brand-cyan transition-colors">
+                    {site.phone}
+                  </a>
                 </div>
               </div>
             </div>
@@ -48,7 +59,12 @@ export default function BookingForm() {
                   </div>
                   <h3 className="text-2xl font-black text-slate-900 mb-2">Request Received!</h3>
                   <p className="text-slate-500 font-medium">
-                    Our sales team will contact you shortly to discuss your business requirements. Thank you for choosing LuxeDry!
+                    Our sales team will contact you shortly to discuss your business requirements.
+                    Need it sooner? Email us at{' '}
+                    <a href={`mailto:${site.email}`} className="text-brand-cyan font-bold hover:underline">
+                      {site.email}
+                    </a>
+                    .
                   </p>
                 </div>
               ) : (

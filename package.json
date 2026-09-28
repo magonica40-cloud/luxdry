@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npx next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@swc/helpers": "^0.5.23",
     "@tailwindcss/postcss": "^4.0.0",
     "autoprefixer": "^10.6.1",
     "lucide-react": "^1.47.0",
@@ -19,7 +20,7 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "20.19.43",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

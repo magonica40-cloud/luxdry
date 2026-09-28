@@ -26,7 +26,7 @@ export default function WhyLuxeDry() {
               Your Clothes Deserve <span className="text-brand-cyan">Better Care</span>
             </h2>
             <p className="text-slate-600 text-lg mb-8 leading-relaxed font-medium">
-              From everyday wear to your most delicate garments, our team takes care of your laundry so you don't have to. Whether it's a week's worth of clothes, a formal outfit, or household linen, we're here to make laundry simple.
+              From everyday wear to your most delicate garments, our team takes care of your laundry so you don&apos;t have to. Whether it&apos;s a week&apos;s worth of clothes, a formal outfit, or household linen, we&apos;re here to make laundry simple.
             </p>
             <div className="space-y-6">
               <div>

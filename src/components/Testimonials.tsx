@@ -14,7 +14,7 @@ export default function Testimonials() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">What Our Clients Say</h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-lg">
-            Don't just take our word for it. See why thousands of customers trust LuxeDry.
+            Don&apos;t just take our word for it. See why thousands of customers trust LuxeDry.
           </p>
         </div>
 
@@ -26,7 +26,7 @@ export default function Testimonials() {
                   <Star key={i} size={20} fill="currentColor" />
                 ))}
               </div>
-              <p className="text-slate-600 mb-6 italic">"{review.text}"</p>
+              <p className="text-slate-600 mb-6 italic">&ldquo;{review.text}&rdquo;</p>
               <h4 className="font-bold text-slate-800">- {review.name}</h4>
             </div>
           ))}

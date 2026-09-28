@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import ScrollReveal from '@/components/ScrollReveal';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

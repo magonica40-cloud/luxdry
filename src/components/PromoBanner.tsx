@@ -24,7 +24,7 @@ export default function PromoBanner() {
               <a href="#book" className="px-8 py-4 bg-white text-brand-blue font-bold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 Book Your Pickup
               </a>
-              <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-cyan/20 border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 hover:-translate-y-1 transition-all duration-300">
+              <a href="https://wa.me/919180247261" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-cyan/20 border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 hover:-translate-y-1 transition-all duration-300">
                 Chat on WhatsApp
               </a>
             </div>

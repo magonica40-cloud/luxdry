@@ -10,7 +10,7 @@ export default function TrustBar() {
   ];
 
   return (
-    <section className="py-12 bg-white relative z-10 -mt-8 mx-4 md:mx-12 rounded-3xl shadow-soft">
+    <section className="py-12 bg-white rounded-3xl shadow-soft">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {trusts.map((item, index) => (

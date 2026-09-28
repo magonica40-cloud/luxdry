@@ -1,19 +1,23 @@
-import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+
 import AboutUs from '@/components/AboutUs';
 import Services from '@/components/Services';
+import HowItWorks from '@/components/HowItWorks';
+import DeliveryOptions from '@/components/DeliveryOptions';
 import Compliance from '@/components/Compliance';
 import WhyLuxeDry from '@/components/WhyLuxeDry';
+import FabricCare from '@/components/FabricCare';
+import BlogSection from '@/components/BlogSection';
+import Testimonials from '@/components/Testimonials';
+import ServiceArea from '@/components/ServiceArea';
+import PromoBanner from '@/components/PromoBanner';
 import BookingForm from '@/components/BookingForm';
 import FAQ from '@/components/FAQ';
 import FinalCTA from '@/components/FinalCTA';
-import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-50 selection:bg-brand-cyan/20 selection:text-brand-cyan">
-      <Navbar />
+    <main className="min-h-screen">
       <Hero />
       
       {/* Infinite Marquee Strip */}
@@ -36,13 +40,19 @@ export default function Home() {
 
       <AboutUs />
       <Services />
+
+      <HowItWorks />
+      <DeliveryOptions />
       <Compliance />
       <WhyLuxeDry />
+      <FabricCare />
+      <BlogSection />
+      <Testimonials />
+      <ServiceArea />
+      <PromoBanner />
       <BookingForm />
       <FAQ />
       <FinalCTA />
-      <Footer />
-      <WhatsAppButton />
     </main>
   );
 }
