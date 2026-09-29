@@ -51,6 +51,14 @@ export default function AboutPage() {
         highlight="because fabric is worth the effort"
         intro="LuxeDry is a professional laundry, steam ironing and dry cleaning operation based in Hoskote Taluk, serving both homes and commercial clients across the Bengaluru Rural belt."
         crumbs={[{ name: 'Home', href: '/' }]}
+        image="/b2b_laundry.jpg"
+        imageAlt="Commercial laundry operation"
+        chips={['Est. 2019', 'Hoskote Taluk', '4 city branches', 'SN Enterprises']}
+        tiles={[
+          { src: '/hotel_laundry.jpg', alt: 'Hotel linen' },
+          { src: '/home_fabrics.jpg', alt: 'Home fabrics' },
+          { src: '/premium_garments.jpg', alt: 'Premium garments' },
+        ]}
       />
 
       {/* Who we are */}
@@ -145,7 +153,7 @@ export default function AboutPage() {
 
       {/* Stats */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-noise opacity-5 pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">

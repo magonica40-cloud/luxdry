@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Calendar, Clock, User } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -37,11 +38,12 @@ export default function BlogSection() {
               >
                 <Link href={`/blog/${post.slug}`} className="block">
                   <div className="relative h-56 overflow-hidden bg-slate-200">
-                    <img
+                    <Image
                       src={post.image}
                       alt={post.title}
                       width={800}
                       height={600}
+                      sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-navy font-bold text-xs px-3 py-1.5 rounded-full shadow-sm">

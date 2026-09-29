@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -50,6 +51,14 @@ export default function ServicesPage() {
         highlight="eight industries"
         intro="We run a separate commercial line for institutional textiles, and a residential line for individual garments. Both are held to the same standard, because both come back to someone who will judge the result."
         crumbs={[{ name: 'Home', href: '/' }]}
+        image="/everyday_laundry.jpg"
+        imageAlt="Folded laundry ready for delivery"
+        chips={['Hotels', 'Hospitals', 'Restaurants', 'Corporate', 'Gyms', 'Hostels', 'Salons', 'Uniforms']}
+        tiles={[
+          { src: '/hospital_laundry.jpg', alt: 'Hospital laundry' },
+          { src: '/restaurant_laundry.jpg', alt: 'Restaurant linen' },
+          { src: '/gym_laundry.jpg', alt: 'Gym towels' },
+        ]}
       />
 
       <section className="py-20 bg-slate-50">
@@ -65,11 +74,12 @@ export default function ServicesPage() {
                     className="group bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-soft transition-all duration-300 hover:-translate-y-2 flex flex-col"
                   >
                     <div className="h-52 relative overflow-hidden bg-slate-200">
-                      <img
+                      <Image
                         src={svc.image}
                         alt={svc.name}
                         width={800}
                         height={600}
+                        sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/20 to-transparent" />
@@ -133,7 +143,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-noise opacity-5 pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-5">

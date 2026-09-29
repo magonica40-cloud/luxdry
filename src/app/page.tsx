@@ -10,6 +10,7 @@ import FabricCare from '@/components/FabricCare';
 import BlogSection from '@/components/BlogSection';
 import Testimonials from '@/components/Testimonials';
 import ServiceArea from '@/components/ServiceArea';
+import Branches from '@/components/Branches';
 import PromoBanner from '@/components/PromoBanner';
 import BookingForm from '@/components/BookingForm';
 import FAQ from '@/components/FAQ';
@@ -22,7 +23,7 @@ export default function Home() {
       
       {/* Infinite Marquee Strip */}
       <div className="bg-brand-navy py-6 overflow-hidden border-y border-white/10 relative">
-        <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-noise opacity-5 pointer-events-none"></div>
         <div className="flex whitespace-nowrap animate-marquee relative z-10">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex items-center gap-16 px-8 text-brand-cyan/80 font-bold uppercase tracking-[0.2em] text-sm">
@@ -48,6 +49,7 @@ export default function Home() {
       <FabricCare />
       <BlogSection />
       <Testimonials />
+      <Branches />
       <ServiceArea />
       <PromoBanner />
       <BookingForm />

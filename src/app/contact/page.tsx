@@ -21,6 +21,14 @@ export default function ContactPage() {
         highlight="processed"
         intro="Commercial quote requests get a response within 24 hours. For anything urgent, WhatsApp is the fastest way to reach us."
         crumbs={[{ name: 'Home', href: '/' }]}
+        image="/hero_bg.jpg"
+        imageAlt="Premium commercial laundry service"
+        chips={['24hr quote reply', 'WhatsApp fastest', 'Open all 7 days']}
+        tiles={[
+          { src: '/b2b_laundry.jpg', alt: 'Commercial laundry' },
+          { src: '/everyday_laundry.jpg', alt: 'Everyday laundry' },
+          { src: '/hotel_laundry.jpg', alt: 'Hotel linen' },
+        ]}
       />
 
       <section className="py-20 bg-slate-50">

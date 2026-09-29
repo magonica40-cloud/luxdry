@@ -1,5 +1,6 @@
 'use client';
 import { ArrowRight, Building, Plus, Utensils, Briefcase, Dumbbell, Home, Scissors, UserCheck } from 'lucide-react';
+import Image from 'next/image';
 import ScrollReveal from '@/components/ScrollReveal';
 
 const allServices = [
@@ -38,9 +39,12 @@ export default function Services() {
           {allServices.map((svc) => (
             <div key={svc.id} className="group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-soft transition-all duration-300 hover:-translate-y-2 overflow-hidden flex flex-col xl:[&:nth-child(even)]:translate-y-12 lg:[&:nth-child(even)]:translate-y-8">
               <div className="h-48 w-full relative overflow-hidden bg-slate-100">
-                <img 
+                <Image 
                   src={svc.image} 
                   alt={svc.name} 
+                  width={800}
+                  height={600}
+                  sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>

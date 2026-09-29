@@ -43,6 +43,14 @@ export default function CareersPage() {
         highlight="paid on time"
         intro="Laundry is physical, warm and fast-paced, and we will not pretend otherwise. In exchange you get a clear skill ladder, a stable team and a job that has to be done properly every single day."
         crumbs={[{ name: 'Home', href: '/' }]}
+        image="/uniform_laundry.jpg"
+        imageAlt="Pressed uniforms on a rail"
+        chips={['On-the-job training', 'Promoted from within', 'Rotas 2 weeks ahead', '4 open roles']}
+        tiles={[
+          { src: '/hostel_laundry.jpg', alt: 'Hostel linen handling' },
+          { src: '/corporate_laundry.jpg', alt: 'Corporate laundry' },
+          { src: '/salon_laundry.jpg', alt: 'Salon towels' },
+        ]}
       />
 
       <section className="py-20 bg-slate-50">
@@ -162,7 +170,7 @@ export default function CareersPage() {
       </section>
 
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-noise opacity-5 pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-5">

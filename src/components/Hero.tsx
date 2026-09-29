@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, ShieldCheck, Truck, Sparkles } from 'lucide-react';
 
 export default function Hero() {
@@ -51,7 +52,14 @@ export default function Hero() {
             
             <div className="relative w-full max-w-md aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl z-10 border-8 border-white">
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent mix-blend-overlay z-10"></div>
-              <img src="/hero_bg.jpg" alt="Premium Commercial Laundry Service" className="w-full h-full object-cover" />
+              <Image
+                src="/hero_bg.jpg"
+                alt="Premium Commercial Laundry Service"
+                fill
+                priority
+                sizes="(min-width: 1024px) 448px, 92vw"
+                className="object-cover"
+              />
             </div>
             
             {/* Editorial Circle Badge */}

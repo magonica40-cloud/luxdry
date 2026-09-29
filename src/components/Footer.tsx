@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import Image from 'next/image';
+import { Phone, Mail } from 'lucide-react';
 import { InstagramIcon, WhatsAppIcon } from '@/components/SocialIcons';
 import { site, services } from '@/data/site';
 
@@ -15,7 +16,7 @@ export default function Footer() {
           {/* Brand Col */}
           <div>
             <Link href="/" className="inline-block mb-6">
-              <img
+              <Image
                 src="/logo_lockup_light.png"
                 alt="LuxeDry Logo"
                 width={593}
@@ -72,6 +73,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { name: 'About Us', href: '/about' },
+                { name: 'Branches', href: '/#branches' },
                 { name: 'Careers', href: '/careers' },
                 { name: 'Our Blog', href: '/blog' },
                 { name: 'Contact', href: '/contact' },
@@ -114,30 +116,16 @@ export default function Footer() {
                   {site.email}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-brand-cyan shrink-0 mt-0.5" />
-                <p className="text-slate-400 font-medium text-sm leading-relaxed">
-                  {site.address.line1}, <br />
-                  {site.address.line2}, <br />
-                  {site.address.line3}
-                </p>
-              </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-          <p className="text-slate-500 text-sm font-medium">
+          <p className="text-slate-400 text-sm font-medium">
             &copy; {new Date().getFullYear()} LuxeDry. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/" className="text-slate-500 hover:text-brand-cyan text-sm font-medium">
-              Privacy
-            </Link>
-            <Link href="/" className="text-slate-500 hover:text-brand-cyan text-sm font-medium">
-              Terms
-            </Link>
-            <Link href="/contact" className="text-slate-500 hover:text-brand-cyan text-sm font-medium">
+            <Link href="/contact" className="text-slate-400 hover:text-brand-cyan text-sm font-medium">
               Contact
             </Link>
           </div>

@@ -1,15 +1,41 @@
 'use client';
 import { useState } from 'react';
-import { site } from '@/data/site';
+import { site, whatsappLink } from '@/data/site';
 
 export default function BookingForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [summary, setSummary] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  /**
+   * There is no backend in this project yet, so a submission is handed to WhatsApp
+   * pre-filled (email is offered as the fallback) instead of disappearing into a
+   * fake "success" state.
+   */
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const value = (key: string) => String(data.get(key) ?? '').trim();
+
+    const message = [
+      'New commercial laundry enquiry from the LuxeDry website',
+      `Company: ${value('companyName')}`,
+      `Contact person: ${value('contactPerson')}`,
+      `Phone: ${value('phone')}`,
+      `Industry: ${value('industry')}`,
+      `Preferred start date: ${value('date')}`,
+      value('requirements') ? `Requirements: ${value('requirements')}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    setSummary(message);
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    window.open(whatsappLink(message), '_blank', 'noopener,noreferrer');
   };
+
+  const mailtoHref = `mailto:${site.email}?subject=${encodeURIComponent(
+    'Commercial laundry enquiry'
+  )}&body=${encodeURIComponent(summary)}`;
 
   return (
     <section className="py-24 bg-white" id="book">
@@ -57,58 +83,83 @@ export default function BookingForm() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-black text-slate-900 mb-2">Request Received!</h3>
-                  <p className="text-slate-500 font-medium">
-                    Our sales team will contact you shortly to discuss your business requirements.
-                    Need it sooner? Email us at{' '}
-                    <a href={`mailto:${site.email}`} className="text-brand-cyan font-bold hover:underline">
+                  <h3 className="text-2xl font-black text-slate-900 mb-2">One tap left — send it over</h3>
+                  <p className="text-slate-500 font-medium mb-6">
+                    WhatsApp opened in a new tab carrying everything you just entered. Hit send and
+                    our team replies within 24 hours. If the tab was blocked, or you prefer email:{' '}
+                    <a href={mailtoHref} className="text-brand-cyan font-bold hover:underline break-all">
                       {site.email}
                     </a>
                     .
                   </p>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <a
+                      href={whatsappLink(summary)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-3 rounded-xl bg-brand-cyan text-brand-navy font-bold shadow-glow hover:bg-cyan-400 transition-colors"
+                    >
+                      Open WhatsApp again
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="px-5 py-3 rounded-xl border border-slate-200 text-slate-700 font-bold hover:border-brand-cyan hover:text-brand-cyan transition-colors"
+                    >
+                      Send another enquiry
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="companyName" className="block text-sm font-bold text-slate-700 mb-1.5">Company Name</label>
-                      <input id="companyName" type="text" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50" placeholder="Luxe Hotel" />
+                      <input id="companyName" name="companyName" type="text" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50" placeholder="Luxe Hotel" />
                     </div>
                     <div>
                       <label htmlFor="phone" className="block text-sm font-bold text-slate-700 mb-1.5">Phone Number</label>
-                      <input id="phone" type="tel" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50" placeholder="+91 99999 99999" />
+                      <input id="phone" name="phone" type="tel" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50" placeholder="+91 99999 99999" />
                     </div>
                   </div>
                   
                   <div>
                     <label htmlFor="contactPerson" className="block text-sm font-bold text-slate-700 mb-1.5">Contact Person</label>
-                    <input id="contactPerson" type="text" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50" placeholder="Jane Doe" />
+                    <input id="contactPerson" name="contactPerson" type="text" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50" placeholder="Jane Doe" />
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="industry" className="block text-sm font-bold text-slate-700 mb-1.5">Industry Type</label>
-                      <select id="industry" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50 text-slate-600 appearance-none">
+                      <select id="industry" name="industry" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50 text-slate-600 appearance-none">
                         <option value="">Select industry</option>
-                        <option value="hotel">Hotel & Hospitality</option>
-                        <option value="hospital">Hospital & Healthcare</option>
-                        <option value="restaurant">Restaurant & Food</option>
-                        <option value="corporate">Corporate & Office</option>
-                        <option value="gym">Gym & Fitness</option>
-                        <option value="other">Other Commercial</option>
+                        <option value="Hotel & Hospitality">Hotel & Hospitality</option>
+                        <option value="Hospital & Healthcare">Hospital & Healthcare</option>
+                        <option value="Restaurant & Food">Restaurant & Food</option>
+                        <option value="Corporate & Office">Corporate & Office</option>
+                        <option value="Gym & Fitness">Gym & Fitness</option>
+                        <option value="Other Commercial">Other Commercial</option>
                       </select>
                     </div>
                     <div>
                       <label htmlFor="date" className="block text-sm font-bold text-slate-700 mb-1.5">Preferred Date</label>
-                      <input id="date" type="date" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50 text-slate-600" />
+                      <input id="date" name="date" type="date" required className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50 text-slate-600" />
                     </div>
                   </div>
 
+                  <div>
+                    <label htmlFor="requirements" className="block text-sm font-bold text-slate-700 mb-1.5">
+                      Volume / requirements <span className="text-slate-400 font-semibold">(optional)</span>
+                    </label>
+                    <textarea id="requirements" name="requirements" rows={3} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-slate-50" placeholder="e.g. 200 kg of linen a week, twice-weekly pickup" />
+                  </div>
+
                   <button type="submit" className="w-full py-4 rounded-xl bg-brand-cyan text-brand-navy font-bold shadow-glow hover:bg-cyan-400 hover:-translate-y-1 transition-all duration-300 mt-4">
-                    Request Quote
+                    Request Quote on WhatsApp
                   </button>
                   <p className="text-center text-xs text-slate-400 font-medium mt-4">
-                    We offer customized pricing plans based on your volume.
+                    Your details open in WhatsApp so the enquiry actually reaches us. Pricing is
+                    customised to your volume.
                   </p>
                 </form>
               )}

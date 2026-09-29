@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Calendar, Clock } from 'lucide-react';
 import PageHero from '@/components/PageHero';
@@ -24,6 +25,14 @@ export default function BlogIndexPage() {
         highlight="sustainable cleaning"
         intro="Practical, tested guidance from the people who process laundry every day — written for homeowners who want to do less damage to their clothes, and for operators who need the process to hold up."
         crumbs={[{ name: 'Home', href: '/' }]}
+        image="/home_fabrics.jpg"
+        imageAlt="Folded home fabrics"
+        chips={['Fabric Care', 'Stain Removal', 'Operations', 'Sustainability']}
+        tiles={[
+          { src: '/premium_garments.jpg', alt: 'Premium garments' },
+          { src: '/b2b_laundry.jpg', alt: 'Commercial laundry' },
+          { src: '/uniform_laundry.jpg', alt: 'Uniforms' },
+        ]}
       />
 
       {/* Categories */}
@@ -48,11 +57,13 @@ export default function BlogIndexPage() {
           <ScrollReveal>
             <article className="grid md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto bg-slate-50 border border-slate-100 rounded-[2rem] overflow-hidden">
               <Link href={`/blog/${featured.slug}`} className="block h-64 md:h-full">
-                <img
+                <Image
                   src={featured.image}
                   alt={featured.title}
                   width={1600}
                   height={900}
+                  priority
+                  sizes="(min-width:768px) 50vw, 100vw"
                   className="w-full h-full object-cover"
                 />
               </Link>
@@ -99,11 +110,12 @@ export default function BlogIndexPage() {
                 >
                   <Link href={`/blog/${post.slug}`} className="block">
                     <div className="relative h-52 overflow-hidden bg-slate-200">
-                      <img
+                      <Image
                         src={post.image}
                         alt={post.title}
                         width={800}
                         height={600}
+                        sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-navy font-bold text-xs px-3 py-1.5 rounded-full shadow-sm">

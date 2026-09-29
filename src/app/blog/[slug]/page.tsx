@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
 import PageHero from '@/components/PageHero';
@@ -43,6 +44,9 @@ export default async function BlogPostPage({ params }: Params) {
           { name: 'Blog', href: '/blog' },
           { name: post.category, href: '/blog' },
         ]}
+        image={post.image}
+        imageAlt={post.title}
+        chips={[post.displayDate, `${post.readTime} read`, post.author]}
       />
 
       <article className="py-16 md:py-20 bg-white">
@@ -64,11 +68,13 @@ export default async function BlogPostPage({ params }: Params) {
 
             <ScrollReveal>
               <div className="rounded-3xl overflow-hidden my-10 border border-slate-100">
-                <img
+                <Image
                   src={post.image}
                   alt={post.title}
                   width={1600}
                   height={900}
+                  priority
+                  sizes="(min-width:768px) 768px, 100vw"
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -111,11 +117,12 @@ export default async function BlogPostPage({ params }: Params) {
               >
                 <Link href={`/blog/${r.slug}`} className="block">
                   <div className="h-44 overflow-hidden bg-slate-200">
-                    <img
+                    <Image
                       src={r.image}
                       alt={r.title}
                       width={800}
                       height={600}
+                      sizes="(min-width:1024px) 33vw, 100vw"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>

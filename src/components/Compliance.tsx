@@ -7,7 +7,7 @@ export default function Compliance() {
     <section className="py-24 bg-brand-navy text-white relative overflow-hidden">
       
       {/* Decorative background lines */}
-      <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none z-0"></div>
+      <div className="absolute inset-0 bg-noise opacity-5 pointer-events-none z-0"></div>
       <div className="absolute inset-0 opacity-10 pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)', backgroundSize: '50px 50px' }}></div>
 
       <div className="container mx-auto px-4 max-w-6xl relative z-10">

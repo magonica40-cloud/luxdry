@@ -1,25 +1,44 @@
 'use client';
 import { useState } from 'react';
-import { MapPin, Search, CheckCircle } from 'lucide-react';
+import { MapPin, Search, CheckCircle, MessageCircle } from 'lucide-react';
+import {
+  findCoverage,
+  serviceableAreas,
+  serviceablePincodes,
+  whatsappLink,
+  type Branch,
+} from '@/data/site';
 
 export default function ServiceArea() {
-  const [pincode, setPincode] = useState('');
+  const [query, setQuery] = useState('');
   const [status, setStatus] = useState<'idle' | 'checking' | 'available' | 'unavailable'>('idle');
+  const [match, setMatch] = useState<Branch | null>(null);
+
+  /** Looks the entry up against the real branch coverage list in data/site.ts. */
+  const lookup = (value: string) => {
+    const trimmed = value.trim();
+    if (!trimmed) {
+      setMatch(null);
+      setStatus('idle');
+      return;
+    }
+    setStatus('checking');
+    const found = findCoverage(trimmed) ?? null;
+    // Small settle delay so the result never flashes past unreadable.
+    window.setTimeout(() => {
+      setMatch(found);
+      setStatus(found ? 'available' : 'unavailable');
+    }, 350);
+  };
 
   const handleCheck = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!pincode) return;
-    
-    setStatus('checking');
-    // Simulate API call
-    setTimeout(() => {
-      // Mock validation: Karnataka service area covers the 56xxxx range
-      if (pincode.startsWith('56')) {
-        setStatus('available');
-      } else {
-        setStatus('unavailable');
-      }
-    }, 800);
+    lookup(query);
+  };
+
+  const pickArea = (area: string) => {
+    setQuery(area);
+    lookup(area);
   };
 
   return (
@@ -55,7 +74,8 @@ export default function ServiceArea() {
               We Come to <span className="text-brand-cyan">You</span>
             </h2>
             <p className="text-slate-600 text-lg font-medium mb-8">
-              Check if LuxeDry is available in your neighborhood. Enter your pincode below.
+              Check if LuxeDry is available in your neighborhood. Enter your pincode or area name
+              below.
             </p>
 
             <form onSubmit={handleCheck} className="flex gap-2 max-w-md relative mb-6">
@@ -63,12 +83,12 @@ export default function ServiceArea() {
                 <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
                 <input 
                   type="text" 
-                  aria-label="Enter Pincode"
-                  value={pincode}
-                  onChange={(e) => { setPincode(e.target.value); setStatus('idle'); }}
-                  placeholder="Enter Pincode (e.g. 560067)" 
+                  aria-label="Enter your pincode or area name"
+                  value={query}
+                  onChange={(e) => { setQuery(e.target.value); setStatus('idle'); }}
+                  placeholder="Pincode or area (e.g. 560095)" 
                   className="w-full pl-12 pr-4 py-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-cyan/20 focus:border-brand-cyan transition-colors bg-white font-medium shadow-sm"
-                  maxLength={6}
+                  maxLength={24}
                 />
               </div>
               <button type="submit" disabled={status === 'checking'} className="px-6 py-4 bg-brand-cyan text-brand-navy rounded-xl font-bold hover:bg-cyan-400 transition-colors shadow-glow flex items-center gap-2">
@@ -78,28 +98,52 @@ export default function ServiceArea() {
             </form>
 
             {/* Status Messages */}
-            <div className="h-12">
-              {status === 'available' && (
-                <div className="flex items-center gap-2 text-emerald-600 font-bold bg-emerald-50 px-4 py-2 rounded-lg border border-emerald-100 inline-flex animate-[fadeUp_0.3s_ease]">
-                  <CheckCircle size={18} /> Yes! We serve your area.
+            <div className="min-h-[3.25rem]">
+              {status === 'available' && match && (
+                <div className="rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 animate-[fadeUp_0.3s_ease]">
+                  <p className="flex items-center gap-2 text-emerald-700 font-bold">
+                    <CheckCircle size={18} className="shrink-0" /> Yes — the {match.name} branch serves
+                    you.
+                  </p>
+                  <p className="text-emerald-800/80 text-sm font-medium mt-1">
+                    {match.turnaround} turnaround &middot; pickup {match.pickupSlot}
+                  </p>
                 </div>
               )}
               {status === 'unavailable' && (
-                <div className="flex items-center gap-2 text-rose-600 font-bold bg-rose-50 px-4 py-2 rounded-lg border border-rose-100 inline-flex animate-[fadeUp_0.3s_ease]">
-                  Oops! We don&apos;t serve this area yet.
+                <div className="rounded-xl border border-rose-100 bg-rose-50 px-4 py-3 animate-[fadeUp_0.3s_ease]">
+                  <p className="text-rose-700 font-bold">
+                    We don&apos;t have a collection route for &ldquo;{query}&rdquo; yet.
+                  </p>
+                  <a
+                    href={whatsappLink(`Hi LuxeDry, do you offer pickup and delivery at ${query.trim()}?`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-brand-navy bg-white border border-slate-200 rounded-lg px-3 py-1.5 hover:border-brand-cyan transition-colors"
+                  >
+                    <MessageCircle size={15} /> Ask us on WhatsApp
+                  </a>
                 </div>
               )}
             </div>
 
             <div className="mt-8 pt-8 border-t border-slate-200">
-              <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Popular Areas</p>
+              <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Areas we cover today</p>
               <div className="flex flex-wrap gap-2">
-                {['Whitefield', 'Indiranagar', 'Koramangala', 'Jayanagar', 'Yelahanka', 'Hoskote'].map(area => (
-                  <span key={area} className="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600">
+                {serviceableAreas.slice(0, 10).map(area => (
+                  <button
+                    key={area}
+                    type="button"
+                    onClick={() => pickArea(area)}
+                    className="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600 hover:border-brand-cyan hover:text-brand-cyan transition-colors"
+                  >
                     {area}
-                  </span>
+                  </button>
                 ))}
               </div>
+              <p className="text-xs text-slate-400 font-medium mt-4">
+                {serviceablePincodes.length} pin codes live on our routes across Bengaluru.
+              </p>
             </div>
 
           </div>
