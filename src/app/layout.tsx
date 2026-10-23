@@ -48,8 +48,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${jakarta.className} text-slate-800 bg-slate-50 antialiased selection:bg-brand-cyan/20 selection:text-brand-cyan`}>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${jakarta.className} text-slate-800 bg-slate-50 antialiased selection:bg-brand-cyan/20 selection:text-brand-cyan`}
+      >
         <Navbar />
         {children}
         <Footer />

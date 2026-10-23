@@ -52,20 +52,18 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center gap-6">
-        {/* The logo artwork is dark, so it sits on a light plate while the bar floats over a dark hero */}
+        {/* The logo floats seamlessly with transparent background, switching to light variant on dark hero */}
         <Link
           href="/"
-          className={`flex items-center z-50 shrink-0 rounded-2xl transition-all duration-300 ${
-            !scrolled && onDarkHero ? 'bg-white/95 px-2 py-1 shadow-lg' : ''
-          }`}
+          className="flex items-center z-50 shrink-0 transition-all duration-300"
         >
           <Image
-            src="/logo_care.png"
+            src={!scrolled && onDarkHero ? '/logo_care_light.png' : '/logo_care.png'}
             alt="Luxe Dry Care"
-            width={570}
-            height={381}
+            width={!scrolled && onDarkHero ? 593 : 570}
+            height={!scrolled && onDarkHero ? 391 : 381}
             priority
-            className={`w-auto transition-all duration-300 ${scrolled ? 'h-20' : 'h-28'}`}
+            className={`w-auto transition-all duration-300 ${scrolled ? 'h-16 md:h-20' : 'h-20 md:h-24'}`}
           />
         </Link>
 
@@ -92,6 +90,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
+          suppressHydrationWarning
           className="lg:hidden z-50 text-slate-800 ml-auto"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
