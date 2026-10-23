@@ -17,10 +17,10 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block mb-6">
               <Image
-                src="/logo_lockup_light.png"
-                alt="LuxeDry Logo"
+                src="/logo_care_light.png"
+                alt="Luxe Dry Care Logo"
                 width={593}
-                height={489}
+                height={391}
                 className="h-20 w-auto"
               />
             </Link>

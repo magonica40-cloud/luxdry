@@ -60,10 +60,10 @@ export default function Navbar() {
           }`}
         >
           <Image
-            src="/logo_cropped.png"
-            alt="LuxeDry"
+            src="/logo_care.png"
+            alt="Luxe Dry Care"
             width={570}
-            height={469}
+            height={381}
             priority
             className={`w-auto transition-all duration-300 ${scrolled ? 'h-20' : 'h-28'}`}
           />
