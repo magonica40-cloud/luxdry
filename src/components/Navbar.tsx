@@ -22,15 +22,15 @@ export default function Navbar() {
   }, [pathname]);
 
   useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setIsOpen(false);
     };
 
-    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = isOpen ? 'hidden' : '';
 
     return () => {
-      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
   }, [isOpen]);
@@ -69,8 +69,11 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={`text-base font-semibold transition-colors ${
-                isActive(link.href) ? 'text-brand-cyan' :
-                  scrolled || !onDarkHero ? 'text-slate-600 hover:text-brand-cyan' : 'text-white/90 hover:text-white'
+                isActive(link.href)
+                  ? 'text-brand-cyan'
+                  : scrolled || !onDarkHero
+                    ? 'text-slate-600 hover:text-brand-cyan'
+                    : 'text-white/90 hover:text-white'
               }`}
             >
               {link.name}
@@ -86,7 +89,7 @@ export default function Navbar() {
 
         <button
           suppressHydrationWarning
-          className={`lg:hidden z-[60] ml-auto transition-colors ${menuButtonTone}`}
+          className={`lg:hidden z-[80] ml-auto transition-colors ${menuButtonTone}`}
           onClick={() => setIsOpen((prev) => !prev)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isOpen}
@@ -96,7 +99,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`fixed inset-0 w-screen h-screen bg-slate-950/95 backdrop-blur-sm z-40 transition-all duration-300 ease-out lg:hidden ${
+        className={`fixed inset-0 z-[70] w-screen h-screen bg-slate-950/95 backdrop-blur-sm transition-all duration-300 ease-out lg:hidden ${
           isOpen ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-full'
         }`}
         aria-hidden={!isOpen}
