@@ -17,13 +17,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close the mobile menu when the route changes (including via browser back).
-  // Adjusting state during render rather than in an effect avoids a cascading render.
-  const [lastPath, setLastPath] = useState(pathname);
-  if (lastPath !== pathname) {
-    setLastPath(pathname);
+  // Close the mobile menu when the route changes.
+  useEffect(() => {
     setIsOpen(false);
-  }
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -40,6 +37,7 @@ export default function Navbar() {
   const onDarkHero = pathname !== '/';
   const linkTone =
     scrolled || !onDarkHero ? 'text-slate-600 hover:text-brand-cyan' : 'text-white/90 hover:text-white';
+  const menuButtonTone = scrolled || !onDarkHero ? 'text-slate-800' : 'text-white';
 
   return (
     <header
@@ -91,7 +89,7 @@ export default function Navbar() {
         {/* Mobile Toggle */}
         <button
           suppressHydrationWarning
-          className="lg:hidden z-50 text-slate-800 ml-auto"
+          className={`lg:hidden z-50 ml-auto transition-colors ${menuButtonTone}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isOpen}
