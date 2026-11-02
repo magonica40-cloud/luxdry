@@ -17,14 +17,20 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close the mobile menu when the route changes.
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
   useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+
+    window.addEventListener('keydown', onKeyDown);
     document.body.style.overflow = isOpen ? 'hidden' : '';
+
     return () => {
+      window.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = '';
     };
   }, [isOpen]);
@@ -32,11 +38,7 @@ export default function Navbar() {
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href.split('#')[0]) && !href.includes('#');
 
-  // Every route except the homepage opens with the dark PageHero, so the transparent
-  // bar has to switch to light text until the white "scrolled" state takes over.
   const onDarkHero = pathname !== '/';
-  const linkTone =
-    scrolled || !onDarkHero ? 'text-slate-600 hover:text-brand-cyan' : 'text-white/90 hover:text-white';
   const menuButtonTone = scrolled || !onDarkHero ? 'text-slate-800' : 'text-white';
 
   return (
@@ -50,11 +52,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center gap-6">
-        {/* The logo floats seamlessly with transparent background, switching to light variant on dark hero */}
-        <Link
-          href="/"
-          className="flex items-center z-50 shrink-0 transition-all duration-300"
-        >
+        <Link href="/" className="flex items-center z-50 shrink-0 transition-all duration-300">
           <Image
             src={!scrolled && onDarkHero ? '/logo_care_light.png' : '/logo_care.png'}
             alt="Luxe Dry Care"
@@ -65,14 +63,14 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Nav pushed to the right side */}
         <nav className="hidden lg:flex items-center gap-7 ml-auto">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               className={`text-base font-semibold transition-colors ${
-                isActive(link.href) ? 'text-brand-cyan' : linkTone
+                isActive(link.href) ? 'text-brand-cyan' :
+                  scrolled || !onDarkHero ? 'text-slate-600 hover:text-brand-cyan' : 'text-white/90 hover:text-white'
               }`}
             >
               {link.name}
@@ -86,36 +84,47 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           suppressHydrationWarning
-          className={`lg:hidden z-50 ml-auto transition-colors ${menuButtonTone}`}
-          onClick={() => setIsOpen(!isOpen)}
+          className={`lg:hidden z-[60] ml-auto transition-colors ${menuButtonTone}`}
+          onClick={() => setIsOpen((prev) => !prev)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isOpen}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
+      </div>
 
-        {/* Mobile Nav */}
-        <div
-          className={`fixed inset-0 bg-white z-40 transition-transform duration-300 transform ${
-            isOpen ? 'translate-x-0' : 'translate-x-full'
-          } lg:hidden flex flex-col items-center justify-center gap-6 overflow-y-auto`}
-        >
+      <div
+        className={`fixed inset-0 w-screen h-screen bg-slate-950/95 backdrop-blur-sm z-40 transition-all duration-300 ease-out lg:hidden ${
+          isOpen ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-full'
+        }`}
+        aria-hidden={!isOpen}
+      >
+        <div className="flex h-full w-full flex-col items-center justify-center gap-7 px-6 text-center">
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            className="absolute right-5 top-5 text-white/80 hover:text-white"
+            aria-label="Close menu"
+          >
+            <X size={30} />
+          </button>
+
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`text-xl font-bold transition-colors ${
-                isActive(link.href) ? 'text-brand-cyan' : 'text-slate-800 hover:text-brand-cyan'
+              className={`text-2xl font-bold transition-colors ${
+                isActive(link.href) ? 'text-brand-cyan' : 'text-white hover:text-brand-cyan'
               }`}
             >
               {link.name}
             </Link>
           ))}
-          <Link href="/#book" onClick={() => setIsOpen(false)} className="btn-primary mt-4">
+
+          <Link href="/#book" onClick={() => setIsOpen(false)} className="btn-primary mt-4 text-lg">
             Get a Custom Quote
           </Link>
         </div>
